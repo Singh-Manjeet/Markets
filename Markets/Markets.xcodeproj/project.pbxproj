@@ -16,6 +16,9 @@
 		303B01CC23604F0C00397829 /* MarketsUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 303B01CB23604F0C00397829 /* MarketsUITests.swift */; };
 		303B01E02360562E00397829 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 303B01DF2360562E00397829 /* Constants.swift */; };
 		303B01E3236057BB00397829 /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = 303B01E2236057BB00397829 /* Alamofire */; };
+		303B01E5236058AD00397829 /* DataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 303B01E4236058AD00397829 /* DataManager.swift */; };
+		303B01E7236058D800397829 /* BitcoinGBP.swift in Sources */ = {isa = PBXBuildFile; fileRef = 303B01E6236058D800397829 /* BitcoinGBP.swift */; };
+		303B01EA2360691300397829 /* ErrorPresentable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 303B01E92360691300397829 /* ErrorPresentable.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -50,6 +53,9 @@
 		303B01CB23604F0C00397829 /* MarketsUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MarketsUITests.swift; sourceTree = "<group>"; };
 		303B01CD23604F0C00397829 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		303B01DF2360562E00397829 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
+		303B01E4236058AD00397829 /* DataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataManager.swift; sourceTree = "<group>"; };
+		303B01E6236058D800397829 /* BitcoinGBP.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BitcoinGBP.swift; sourceTree = "<group>"; };
+		303B01E92360691300397829 /* ErrorPresentable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorPresentable.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -106,7 +112,7 @@
 				303B01DE23604FF600397829 /* View */,
 				303B01DA23604FF600397829 /* ViewModel */,
 				303B01DD23604FF600397829 /* Service */,
-				303B01DB23604FF600397829 /* Scenes */,
+				303B01E8236068E300397829 /* Extensions */,
 				303B01B223604F0B00397829 /* Assets.xcassets */,
 				303B01B723604F0B00397829 /* Info.plist */,
 			);
@@ -134,6 +140,7 @@
 		303B01D923604FF600397829 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				303B01E6236058D800397829 /* BitcoinGBP.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -167,6 +174,7 @@
 			isa = PBXGroup;
 			children = (
 				303B01DF2360562E00397829 /* Constants.swift */,
+				303B01E4236058AD00397829 /* DataManager.swift */,
 			);
 			path = Service;
 			sourceTree = "<group>";
@@ -174,9 +182,19 @@
 		303B01DE23604FF600397829 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				303B01DB23604FF600397829 /* Scenes */,
 			);
 			path = View;
 			sourceTree = "<group>";
+		};
+		303B01E8236068E300397829 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				303B01E92360691300397829 /* ErrorPresentable.swift */,
+			);
+			name = Extensions;
+			path = Markets/Extensions;
+			sourceTree = SOURCE_ROOT;
 		};
 /* End PBXGroup section */
 
@@ -316,8 +334,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				303B01AE23604F0900397829 /* OrderViewController.swift in Sources */,
+				303B01E5236058AD00397829 /* DataManager.swift in Sources */,
+				303B01EA2360691300397829 /* ErrorPresentable.swift in Sources */,
 				303B01AA23604F0900397829 /* AppDelegate.swift in Sources */,
 				303B01E02360562E00397829 /* Constants.swift in Sources */,
+				303B01E7236058D800397829 /* BitcoinGBP.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
