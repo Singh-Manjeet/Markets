@@ -9,12 +9,12 @@
 import Foundation
 import Alamofire
 
-typealias completionBlock = (Result<BitcoinGBP, APIError>) -> Void
+typealias completionBlock = (Result<BitcoinPrice, APIError>) -> Void
 class DataManager {
 
     // MARK: - Singleton
     static let shared = DataManager()
-    private var price: BitcoinGBP?
+    private var price: BitcoinPrice?
     
     /* To get the Bitcoin Prices
        It communicates the result using a completion block
@@ -28,7 +28,7 @@ class DataManager {
         }
         
         AF.request(url)
-            .responseDecodable(queue: .global(qos: .background)) { (response: (DataResponse<BitcoinGBP, AFError>)) in
+            .responseDecodable(queue: .global(qos: .background)) { (response: (DataResponse<BitcoinPrice, AFError>)) in
 
                 switch response.result {
                 case .success(let price):

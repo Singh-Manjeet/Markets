@@ -1,5 +1,5 @@
 //
-//  BitcoinGBP.swift
+//  BitcoinPrice.swift
 //  Markets
 //
 //  Created by Manjeet Singh on 23/10/19.
@@ -8,16 +8,16 @@
 
 import Foundation
 
-// MARK: - BitcoinGBP
-struct BitcoinGBP: Codable {
-    let currency: PriceDetail?
+// MARK: - BitcoinPrice
+struct BitcoinPrice: Codable {
+    let detail: Detail?
     
     enum CodingKeys: String, CodingKey {
-        case currency = "GBP"
+        case detail = "GBP"
     }
 }
 
-struct PriceDetail: Codable {
+struct Detail: Codable {
     let fifteenMinDelayed: Double?
     let last: Double?
     let buy: Double?
@@ -26,10 +26,10 @@ struct PriceDetail: Codable {
     
     enum CodingKeys: String, CodingKey {
         case fifteenMinDelayed = "15m"
-        case last
-        case buy
-        case sell
-        case symbol
+        case last = "last"
+        case buy = "buy"
+        case sell = "sell"
+        case symbol = "symbol"
     }
     
 }

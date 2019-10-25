@@ -17,8 +17,11 @@
 		303B01E02360562E00397829 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 303B01DF2360562E00397829 /* Constants.swift */; };
 		303B01E3236057BB00397829 /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = 303B01E2236057BB00397829 /* Alamofire */; };
 		303B01E5236058AD00397829 /* DataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 303B01E4236058AD00397829 /* DataManager.swift */; };
-		303B01E7236058D800397829 /* BitcoinGBP.swift in Sources */ = {isa = PBXBuildFile; fileRef = 303B01E6236058D800397829 /* BitcoinGBP.swift */; };
+		303B01E7236058D800397829 /* BitcoinPrice.swift in Sources */ = {isa = PBXBuildFile; fileRef = 303B01E6236058D800397829 /* BitcoinPrice.swift */; };
 		303B01EA2360691300397829 /* ErrorPresentable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 303B01E92360691300397829 /* ErrorPresentable.swift */; };
+		303B01EC2363056500397829 /* LoadingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 303B01EB2363056400397829 /* LoadingView.swift */; };
+		303B01EE236306A100397829 /* Loadable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 303B01ED236306A100397829 /* Loadable.swift */; };
+		303B01F0236308E400397829 /* OrderViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 303B01EF236308E400397829 /* OrderViewModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -54,8 +57,11 @@
 		303B01CD23604F0C00397829 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		303B01DF2360562E00397829 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		303B01E4236058AD00397829 /* DataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataManager.swift; sourceTree = "<group>"; };
-		303B01E6236058D800397829 /* BitcoinGBP.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BitcoinGBP.swift; sourceTree = "<group>"; };
+		303B01E6236058D800397829 /* BitcoinPrice.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BitcoinPrice.swift; sourceTree = "<group>"; };
 		303B01E92360691300397829 /* ErrorPresentable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorPresentable.swift; sourceTree = "<group>"; };
+		303B01EB2363056400397829 /* LoadingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingView.swift; sourceTree = "<group>"; };
+		303B01ED236306A100397829 /* Loadable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Loadable.swift; sourceTree = "<group>"; };
+		303B01EF236308E400397829 /* OrderViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderViewModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -140,7 +146,7 @@
 		303B01D923604FF600397829 /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				303B01E6236058D800397829 /* BitcoinGBP.swift */,
+				303B01E6236058D800397829 /* BitcoinPrice.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -148,6 +154,7 @@
 		303B01DA23604FF600397829 /* ViewModel */ = {
 			isa = PBXGroup;
 			children = (
+				303B01EF236308E400397829 /* OrderViewModel.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -182,6 +189,7 @@
 		303B01DE23604FF600397829 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				303B01EB2363056400397829 /* LoadingView.swift */,
 				303B01DB23604FF600397829 /* Scenes */,
 			);
 			path = View;
@@ -191,6 +199,7 @@
 			isa = PBXGroup;
 			children = (
 				303B01E92360691300397829 /* ErrorPresentable.swift */,
+				303B01ED236306A100397829 /* Loadable.swift */,
 			);
 			name = Extensions;
 			path = Markets/Extensions;
@@ -335,10 +344,13 @@
 			files = (
 				303B01AE23604F0900397829 /* OrderViewController.swift in Sources */,
 				303B01E5236058AD00397829 /* DataManager.swift in Sources */,
+				303B01F0236308E400397829 /* OrderViewModel.swift in Sources */,
 				303B01EA2360691300397829 /* ErrorPresentable.swift in Sources */,
 				303B01AA23604F0900397829 /* AppDelegate.swift in Sources */,
 				303B01E02360562E00397829 /* Constants.swift in Sources */,
-				303B01E7236058D800397829 /* BitcoinGBP.swift in Sources */,
+				303B01EE236306A100397829 /* Loadable.swift in Sources */,
+				303B01EC2363056500397829 /* LoadingView.swift in Sources */,
+				303B01E7236058D800397829 /* BitcoinPrice.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

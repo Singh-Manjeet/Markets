@@ -8,22 +8,52 @@
 
 import UIKit
 
-class OrderViewController: UIViewController {
+class OrderViewController: UIViewController, Loadable {
     
+    // MARK: - Vars
+    private var viewModel: OrderViewModel!
+    
+    // MARK: - Life Cycle
     override func viewDidLoad() {
         super.viewDidLoad()
-    
-        // temporary calling the api in viewDidLoad
-        DataManager.shared.getBitcoinPrices { result in
-            
-            switch result {
-            case .success(let price):
-                print(price)
+        
+        showLoadingView()
+        viewModel = OrderViewModel(delegate: self)
+        viewModel.fetch()
+    }
+}
 
-            case .failure(let error):
-                print(error.message)
+// MARK: - OrderViewModelDelegate
+extension OrderViewController: OrderViewModelDelegate {
+    func stateDidChange(_ state: APIDataState<Container>) {
+        
+        DispatchQueue.main.async { [weak self] in
+            
+            guard let strongSelf = self else { return }
+            
+            strongSelf.hideLoadingView()
+            
+            switch state {
+            case .loaded(let container):
+                print(container.price)
+            case .error(let error):
+                strongSelf.presentError(with: error.message)
+            default:
+                break
             }
         }
     }
 }
+
+// MARK: - Private Helpers
+private extension OrderViewController {
+    func presentError(with message: String) {
+        let alertController = UIAlertController(title: "", message: message, preferredStyle: .alert)
+        let okAction = UIAlertAction(title: "OK", style: .default)
+        alertController.addAction(okAction)
+        present(alertController, animated: true)
+    }
+}
+
+
 
