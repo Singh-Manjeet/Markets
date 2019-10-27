@@ -90,17 +90,17 @@ extension OrderViewModel {
                 return
         }
         
-        guard let lastBuyingPrice = lowestBuyPrice,
-              let lastSellingPrice = highestSellPrice else {
+        guard let lowestBuyingPrice = lowestBuyPrice,
+              let highestSellingPrice = highestSellPrice else {
                 
                 lowestBuyPrice = priceDetails.buy
                 highestSellPrice = priceDetails.sell
-                hasBuyPriceIncreased = true
-                hasSellPriceIncreased = true
                 return
         }
         
-        hasBuyPriceIncreased = currentBuyPrice > lastBuyingPrice
-        hasSellPriceIncreased = currentSellPrice > lastSellingPrice
+        lowestBuyPrice = currentBuyPrice < lowestBuyingPrice ? currentBuyPrice : lowestBuyPrice
+        highestSellPrice = currentSellPrice > highestSellingPrice ? currentSellPrice : highestSellingPrice
+        hasBuyPriceIncreased = currentBuyPrice > lowestBuyingPrice
+        hasSellPriceIncreased = currentSellPrice > highestSellingPrice
     }
 }

@@ -9,12 +9,13 @@
 import UIKit
 
 final class LoadingView: UIView {
-    private let activityIndicatorView = UIActivityIndicatorView(style: .large)
-    
+    private let activityIndicatorView = UIActivityIndicatorView()
     override func layoutSubviews() {
         super.layoutSubviews()
         
-        backgroundColor = UIColor.black.withAlphaComponent(0.4)
+        activityIndicatorView.color = .white
+        activityIndicatorView.style = .large
+        backgroundColor = UIColor.black.withAlphaComponent(0.6)
         layer.cornerRadius = 10
         
         if activityIndicatorView.superview == nil {

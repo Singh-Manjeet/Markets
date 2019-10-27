@@ -21,6 +21,7 @@
 		303B01EC2363056500397829 /* LoadingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 303B01EB2363056400397829 /* LoadingView.swift */; };
 		303B01EE236306A100397829 /* Loadable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 303B01ED236306A100397829 /* Loadable.swift */; };
 		303B01F0236308E400397829 /* OrderViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 303B01EF236308E400397829 /* OrderViewModel.swift */; };
+		305905962365E9B700A63FEC /* DoubleExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 305905952365E9B700A63FEC /* DoubleExtension.swift */; };
 		BF97B02ABECEB260EB786754 /* Pods_Markets.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BA6B193D3BC51E2EBAF44FD3 /* Pods_Markets.framework */; };
 		D2A8DEA4A4EDE34A578CEADF /* Pods_MarketsTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 117208DC575E5C127A867478 /* Pods_MarketsTests.framework */; };
 		E1ECAE21D146CB6F4D3D4BFD /* Pods_Markets_MarketsUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 546B9F93E7BB09584A084535 /* Pods_Markets_MarketsUITests.framework */; };
@@ -67,6 +68,7 @@
 		303B01EB2363056400397829 /* LoadingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingView.swift; sourceTree = "<group>"; };
 		303B01ED236306A100397829 /* Loadable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Loadable.swift; sourceTree = "<group>"; };
 		303B01EF236308E400397829 /* OrderViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderViewModel.swift; sourceTree = "<group>"; };
+		305905952365E9B700A63FEC /* DoubleExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DoubleExtension.swift; sourceTree = "<group>"; };
 		5440260400016065FBCD70F9 /* Pods-Markets.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Markets.release.xcconfig"; path = "Target Support Files/Pods-Markets/Pods-Markets.release.xcconfig"; sourceTree = "<group>"; };
 		546B9F93E7BB09584A084535 /* Pods_Markets_MarketsUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Markets_MarketsUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		6B1CE7A994E6F313C3838F00 /* Pods-MarketsTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MarketsTests.release.xcconfig"; path = "Target Support Files/Pods-MarketsTests/Pods-MarketsTests.release.xcconfig"; sourceTree = "<group>"; };
@@ -228,6 +230,7 @@
 			children = (
 				303B01E92360691300397829 /* ErrorPresentable.swift */,
 				303B01ED236306A100397829 /* Loadable.swift */,
+				305905952365E9B700A63FEC /* DoubleExtension.swift */,
 			);
 			name = Extensions;
 			path = Markets/Extensions;
@@ -483,6 +486,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				305905962365E9B700A63FEC /* DoubleExtension.swift in Sources */,
 				303B01AE23604F0900397829 /* OrderViewController.swift in Sources */,
 				303B01E5236058AD00397829 /* DataManager.swift in Sources */,
 				303B01F0236308E400397829 /* OrderViewModel.swift in Sources */,
@@ -679,7 +683,7 @@
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_PRECOMPILE_BRIDGING_HEADER = NO;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -701,7 +705,7 @@
 				SWIFT_OBJC_BRIDGING_HEADER = "";
 				SWIFT_PRECOMPILE_BRIDGING_HEADER = NO;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};
