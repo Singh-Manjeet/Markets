@@ -1,0 +1,15 @@
+target 'Markets' do
+  use_frameworks!
+
+	pod 'Alamofire', '~> 5.0.0-rc.3'
+	pod 'EFCountingLabel'
+
+
+  target 'MarketsTests' do
+    inherit! :search_paths
+  end
+
+  target 'MarketsUITests' do
+  end
+
+end

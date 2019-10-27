@@ -30,7 +30,26 @@ typealias APIDataState<T> = DataState<T, APIError>
 // MARK: - OrderViewModel
 final class OrderViewModel {
     
-    private var price: BitcoinPrice?
+    // MARK: - Vars
+    var lowestBuyPrice: Double?
+    var highestSellPrice: Double?
+    
+    var buyingPrice: Double?
+    var sellingPrice: Double?
+    var hasBuyPriceIncreased: Bool = false
+    var hasSellPriceIncreased: Bool = false
+    
+    private var price: BitcoinPrice? {
+        didSet {
+            
+            guard let price = price,
+                let detail = price.detail else { return }
+            buyingPrice = detail.buy
+            sellingPrice = detail.sell
+            updateBitcoinPriceDetails()
+        }
+    }
+    
     weak var delegate: OrderViewModelDelegate?
     
     private(set) var state: APIDataState<Container> = .loading {
@@ -57,5 +76,31 @@ final class OrderViewModel {
                 strongSelf.delegate?.stateDidChange(.error(APIError(message: error.message)))
             }
         }
+    }
+}
+
+// MARK: - Public methods
+extension OrderViewModel {
+       private func updateBitcoinPriceDetails() {
+       
+        guard let bitCoinPrice = price,
+              let priceDetails = bitCoinPrice.detail,
+              let currentBuyPrice = priceDetails.buy,
+              let currentSellPrice = priceDetails.sell else {
+                return
+        }
+        
+        guard let lastBuyingPrice = lowestBuyPrice,
+              let lastSellingPrice = highestSellPrice else {
+                
+                lowestBuyPrice = priceDetails.buy
+                highestSellPrice = priceDetails.sell
+                hasBuyPriceIncreased = true
+                hasSellPriceIncreased = true
+                return
+        }
+        
+        hasBuyPriceIncreased = currentBuyPrice > lastBuyingPrice
+        hasSellPriceIncreased = currentSellPrice > lastSellingPrice
     }
 }

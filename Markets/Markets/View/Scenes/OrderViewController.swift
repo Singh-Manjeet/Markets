@@ -7,19 +7,26 @@
 //
 
 import UIKit
+import EFCountingLabel
 
 class OrderViewController: UIViewController, Loadable {
     
-    // MARK: - Vars
+    // MARK: - Outlets & Vars
+    @IBOutlet private weak var buyPriceLabel: EFCountingLabel!
+    @IBOutlet private weak var sellPriceLabel: EFCountingLabel!
+    @IBOutlet private weak var lowestBuyPriceLabel: UILabel!
+    @IBOutlet private weak var highestSellPriceLabel: UILabel!
+    @IBOutlet private weak var orderButton: UIButton!
+    
     private var viewModel: OrderViewModel!
     
     // MARK: - Life Cycle
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        showLoadingView()
+        setupUI()
         viewModel = OrderViewModel(delegate: self)
-        viewModel.fetch()
+        fetchPricesRepeatedly()
     }
 }
 
@@ -34,8 +41,8 @@ extension OrderViewController: OrderViewModelDelegate {
             strongSelf.hideLoadingView()
             
             switch state {
-            case .loaded(let container):
-                print(container.price)
+            case .loaded:
+                strongSelf.updateUI()
             case .error(let error):
                 strongSelf.presentError(with: error.message)
             default:
@@ -47,6 +54,35 @@ extension OrderViewController: OrderViewModelDelegate {
 
 // MARK: - Private Helpers
 private extension OrderViewController {
+    func setupUI() {
+        [buyPriceLabel, sellPriceLabel].forEach { label in
+            label?.setUpdateBlock { value, label in
+                label.text = String(format: "%.2f", value)
+            }
+        }
+    }
+    
+    func fetchPricesRepeatedly() {
+        showLoadingView()
+        viewModel.fetch()
+        
+        DispatchQueue.main.asyncAfter(deadline: .now() + 15.0) { [weak self] in
+            
+            guard let strongSelf = self else { return }
+            strongSelf.fetchPricesRepeatedly()
+        }
+    }
+    
+    func updateUI() {
+        buyPriceLabel.countFromCurrentValueTo(CGFloat(viewModel.buyingPrice ?? 0))
+        sellPriceLabel.countFromCurrentValueTo(CGFloat(viewModel.sellingPrice ?? 0))
+        
+        lowestBuyPriceLabel.text = String(format: "L: %.2f", viewModel.lowestBuyPrice ?? 0.00)
+        highestSellPriceLabel.text = String(format: "H: %.2f", viewModel.highestSellPrice ?? 0.00)
+        buyPriceLabel.textColor = viewModel.hasBuyPriceIncreased ? .green : .red
+        sellPriceLabel.textColor = viewModel.hasSellPriceIncreased ? .green : .red
+    }
+    
     func presentError(with message: String) {
         let alertController = UIAlertController(title: "", message: message, preferredStyle: .alert)
         let okAction = UIAlertAction(title: "OK", style: .default)
