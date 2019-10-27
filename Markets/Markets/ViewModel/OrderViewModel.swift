@@ -77,6 +77,20 @@ final class OrderViewModel {
             }
         }
     }
+    
+    // MARK: - to demonstrate the use of closure and used under unit testing
+    static func fetch(onCompletion: @escaping (DataState<BitcoinPrice?, APIError?>) -> Void) {
+        
+        DataManager.shared.getBitcoinPrices { result in
+            
+            switch result {
+            case .success(let price):
+                onCompletion(.loaded(price))
+            case .failure:
+                onCompletion(.error(APIError(code: 404)))
+            }
+        }
+    }
 }
 
 // MARK: - Public methods
