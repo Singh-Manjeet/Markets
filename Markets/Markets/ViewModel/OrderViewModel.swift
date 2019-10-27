@@ -36,8 +36,8 @@ final class OrderViewModel {
     
     var buyingPrice: Double?
     var sellingPrice: Double?
-    var hasBuyPriceIncreased: Bool = false
-    var hasSellPriceIncreased: Bool = false
+    var hasBuyingPriceIncreased: Bool = false
+    var hasSellingPriceIncreased: Bool = false
     
     private var price: BitcoinPrice? {
         didSet {
@@ -114,7 +114,7 @@ extension OrderViewModel {
         
         lowestBuyPrice = currentBuyPrice < lowestBuyingPrice ? currentBuyPrice : lowestBuyPrice
         highestSellPrice = currentSellPrice > highestSellingPrice ? currentSellPrice : highestSellingPrice
-        hasBuyPriceIncreased = currentBuyPrice > lowestBuyingPrice
-        hasSellPriceIncreased = currentSellPrice > highestSellingPrice
+        hasBuyingPriceIncreased = currentBuyPrice > lowestBuyingPrice
+        hasSellingPriceIncreased = currentSellPrice > highestSellingPrice
     }
 }

@@ -33,31 +33,6 @@ class OrderViewController: UIViewController, Loadable {
         viewModel = OrderViewModel(delegate: self)
         fetchPricesRepeatedly()
     }
-    
-    // MARK: - Actions
-    @IBAction func didTapCancelButton(_ sender: UIButton) {
-        showAlert(with: "This is the only screen, So this button doesnt perform an action, Thanks")
-    }
-    
-    @IBAction func didTapOrderButton(_ sender: UIButton) {
-        showAlert(with: "Order Confirmed !!")
-    }
-    
-    @IBAction func didTapSellButton(_ sender: UIButton) {
-        sellButton.backgroundColor = UIColor(red: 21.0/255.0,
-                                             green: 37.0/255.0,
-                                             blue: 57.0/255.0,
-                                             alpha: 1.0)
-        buyButton.backgroundColor = .brown
-    }
-    
-    @IBAction func didTapBuyButton(_ sender: UIButton) {
-        buyButton.backgroundColor = UIColor(red: 21.0/255.0,
-                                            green: 37.0/255.0,
-                                            blue: 57.0/255.0,
-                                            alpha: 1.0)
-        sellButton.backgroundColor = .brown
-    }
 }
 
 // MARK: - OrderViewModelDelegate
@@ -118,8 +93,8 @@ private extension OrderViewController {
         
         lowestBuyPriceLabel.text = String(format: "L: %.2f", viewModel.lowestBuyPrice ?? 0.00)
         highestSellPriceLabel.text = String(format: "H: %.2f", viewModel.highestSellPrice ?? 0.00)
-        buyPriceLabel.textColor = viewModel.hasBuyPriceIncreased ? .green : .red
-        sellPriceLabel.textColor = viewModel.hasSellPriceIncreased ? .green : .red
+        buyPriceLabel.textColor = viewModel.hasBuyingPriceIncreased ? .green : .red
+        sellPriceLabel.textColor = viewModel.hasSellingPriceIncreased ? .green : .red
         
         formatPriceLabel(lowestBuyPriceLabel, value: CGFloat(viewModel.lowestBuyPrice ?? 0), prefix: "L:")
         formatPriceLabel(highestSellPriceLabel, value: CGFloat(viewModel.highestSellPrice ?? 0), prefix: "H:")
@@ -134,17 +109,48 @@ private extension OrderViewController {
     
     func formatPriceLabel(_ label: UILabel, value: CGFloat, prefix: String? = nil) {
         let completeText = prefix != nil ? String(format: "%@ %.2f", prefix!, value) : String(format: "%.2f", value)
-           let indexOfDecimal = completeText.firstIndex(of: ".")!
-           let decimalPartString = completeText.suffix(from: indexOfDecimal)
-
-           let decimalPartRange = (completeText as NSString).range(of: String(decimalPartString))
-
+        let indexOfDecimal = completeText.firstIndex(of: ".")!
+        let decimalPartString = completeText.suffix(from: indexOfDecimal)
+        
+        let decimalPartRange = (completeText as NSString).range(of: String(decimalPartString))
+        
         let attributedString = NSMutableAttributedString(string: completeText, attributes: [NSAttributedString.Key.font : UIFont.boldSystemFont(ofSize: prefix != nil ? 20 : 35)])
-
+        
         attributedString.setAttributes([NSAttributedString.Key.font : UIFont.boldSystemFont(ofSize: prefix != nil ? 15 : 30)], range: decimalPartRange)
-
-           label.attributedText = attributedString
-       }
+        
+        label.attributedText = attributedString
+    }
+    
+    // MARK: - Actions
+    @IBAction func didTapCancelButton(_ sender: UIButton) {
+        showAlert(with: "This is the only screen, So this button doesnt perform an action, Thanks")
+    }
+    
+    @IBAction func didTapOrderButton(_ sender: UIButton) {
+        showAlert(with: "Order Confirmed !!")
+    }
+    
+    @IBAction func didTapSellButton(_ sender: UIButton) {
+        sellButton.backgroundColor = UIColor(red: 21.0/255.0,
+                                             green: 37.0/255.0,
+                                             blue: 57.0/255.0,
+                                             alpha: 1.0)
+        buyButton.backgroundColor = UIColor(red: 29.0/255.0,
+                                            green: 34.0/255.0,
+                                            blue: 45.0/255.0,
+                                            alpha: 1.0)
+    }
+    
+    @IBAction func didTapBuyButton(_ sender: UIButton) {
+        buyButton.backgroundColor = UIColor(red: 21.0/255.0,
+                                            green: 37.0/255.0,
+                                            blue: 57.0/255.0,
+                                            alpha: 1.0)
+        sellButton.backgroundColor = UIColor(red: 29.0/255.0,
+                                             green: 34.0/255.0,
+                                             blue: 45.0/255.0,
+                                             alpha: 1.0)
+    }
 }
 
 // MARK: - UITextFieldDelegate
@@ -171,18 +177,18 @@ extension OrderViewController: UITextFieldDelegate {
         guard let oldText = textField.text, let r = Range(range, in: oldText) else {
             return true
         }
-
+        
         let newText = oldText.replacingCharacters(in: r, with: string)
         let isNumeric = newText.isEmpty || (Double(newText) != nil)
         let numberOfDots = newText.components(separatedBy: ".").count - 1
-
+        
         let numberOfDecimalDigits: Int
         if let dotIndex = newText.firstIndex(of: ".") {
             numberOfDecimalDigits = newText.distance(from: dotIndex, to: newText.endIndex) - 1
         } else {
             numberOfDecimalDigits = 0
         }
-
+        
         return isNumeric && numberOfDots <= 1 && numberOfDecimalDigits <= 2
     }
     
